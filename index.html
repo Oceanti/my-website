@@ -9,8 +9,8 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: #FDFBF7;
-            color: #333;
+            background: #FAFAFA;
+            color: #222;
         }
         
         /* Navigation */
@@ -24,15 +24,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #FDFBF7;
+            background: transparent;
             transition: background 0.3s;
         }
         
+        nav.scrolled { background: rgba(250,250,250,0.95); }
+        
         nav .logo {
-            font-size: 0.75rem;
-            letter-spacing: 0.25em;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: #333;
+            color: #222;
             text-decoration: none;
             font-weight: 500;
         }
@@ -43,46 +45,158 @@
         }
         
         nav .menu a {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             letter-spacing: 0.1em;
-            color: #999;
+            color: rgba(34,34,34,0.5);
             text-decoration: none;
             transition: color 0.3s;
         }
         
-        nav .menu a:hover { color: #333; }
+        nav .menu a:hover { color: #222; }
         
-        /* Hero */
+        /* Hero - Full Screen with Image */
         .hero {
-            height: 60vh;
+            height: 100vh;
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4);
+        }
+        
+        /* Artistic Typography */
+        .hero-content {
+            position: relative;
+            z-index: 1;
             text-align: center;
-            background: #FDFBF7;
+            color: #fff;
         }
         
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 300;
-            letter-spacing: 0.5em;
+        .hero-content .name-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-content h1 {
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 200;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: #333;
-            margin-left: 0.5em;
+            line-height: 0.9;
+            position: relative;
         }
         
-        .hero p {
-            font-size: 0.8rem;
+        /* Decorative slash lines */
+        .hero-content h1::before {
+            content: '';
+            position: absolute;
+            left: -60px;
+            top: 50%;
+            width: 40px;
+            height: 1px;
+            background: rgba(255,255,255,0.6);
+            transform: rotate(-30deg);
+        }
+        
+        .hero-content h1::after {
+            content: '';
+            position: absolute;
+            right: -60px;
+            top: 50%;
+            width: 40px;
+            height: 1px;
+            background: rgba(255,255,255,0.6);
+            transform: rotate(30deg);
+        }
+        
+        /* Subtitle with slash design */
+        .hero-subtitle {
+            margin-top: 3rem;
+            font-size: 0.75rem;
             font-weight: 300;
-            letter-spacing: 0.3em;
-            color: #999;
-            margin-top: 1rem;
+            letter-spacing: 0.4em;
+            color: rgba(255,255,255,0.7);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .hero-subtitle span {
+            position: relative;
+        }
+        
+        .hero-subtitle span:not(:last-child)::after {
+            content: '/';
+            position: absolute;
+            right: -1.2em;
+            color: rgba(255,255,255,0.4);
+        }
+        
+        /* Diagonal line decoration */
+        .diagonal-line {
+            position: absolute;
+            width: 1px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3), transparent);
+            z-index: 1;
+        }
+        
+        .diagonal-line.left {
+            left: 20%;
+            top: 20%;
+            transform: rotate(15deg);
+        }
+        
+        .diagonal-line.right {
+            right: 15%;
+            bottom: 25%;
+            transform: rotate(-20deg);
+        }
+        
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .scroll-indicator span {
+            font-size: 0.55rem;
+            letter-spacing: 0.2em;
+            color: rgba(255,255,255,0.5);
+        }
+        
+        .scroll-indicator .line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
         }
         
         /* Section */
         .section {
-            padding: 5rem 6rem;
+            padding: 6rem 6rem;
             border-bottom: 1px solid rgba(0,0,0,0.06);
         }
         
@@ -90,28 +204,30 @@
         
         .section-header {
             margin-bottom: 2.5rem;
+            display: flex;
+            align-items: baseline;
+            gap: 1.5rem;
         }
         
         .section-header h2 {
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             font-weight: 400;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
             color: #999;
         }
         
         .section-header p {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 300;
-            margin-top: 0.3rem;
-            color: #333;
+            color: #222;
         }
         
         /* Grid - 4 columns, 3 rows */
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 16px;
         }
         
         .photo-grid .item {
@@ -129,26 +245,26 @@
             transition: transform 0.5s ease;
         }
         
-        .photo-grid .item:hover img { transform: scale(1.03); }
+        .photo-grid .item:hover img { transform: scale(1.04); }
         
         /* About */
         .about {
             padding: 8rem 6rem;
             text-align: center;
-            background: #F7F5F0;
+            background: #F5F4F0;
         }
         
         .about h2 {
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             font-weight: 400;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
             color: #999;
             margin-bottom: 2rem;
         }
         
         .about p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 300;
             line-height: 2.2;
             color: #666;
@@ -158,7 +274,7 @@
         footer {
             padding: 3rem 6rem;
             text-align: center;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             letter-spacing: 0.1em;
             color: #999;
             border-top: 1px solid rgba(0,0,0,0.06);
@@ -170,14 +286,14 @@
             transition: color 0.3s;
         }
         
-        footer a:hover { color: #333; }
+        footer a:hover { color: #222; }
         
         /* Lightbox */
         .lightbox {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(253,251,247,0.98);
+            background: rgba(250,250,250,0.98);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -195,8 +311,8 @@
             position: absolute;
             top: 2rem;
             right: 3rem;
-            font-size: 2.5rem;
-            color: #333;
+            font-size: 2rem;
+            color: #222;
             cursor: pointer;
             opacity: 0.5;
             transition: opacity 0.3s;
@@ -208,8 +324,8 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 3rem;
-            color: #333;
+            font-size: 2.5rem;
+            color: #222;
             cursor: pointer;
             opacity: 0.4;
             transition: opacity 0.3s;
@@ -221,22 +337,24 @@
         .lightbox-next { right: 1rem; }
         
         @media (max-width: 1200px) {
-            .photo-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
+            .photo-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
             .section { padding: 4rem 4rem; }
         }
         
         @media (max-width: 900px) {
-            .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             nav { padding: 1.5rem 2rem; }
             .section { padding: 3rem 2rem; }
-            .hero h1 { font-size: 2.5rem; }
+            .hero-content h1 { font-size: 4rem; }
+            .hero-content h1::before, .hero-content h1::after { display: none; }
         }
         
         @media (max-width: 600px) {
-            .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .hero h1 { font-size: 2rem; letter-spacing: 0.3em; }
+            .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .hero-content h1 { font-size: 3rem; }
             nav .menu { display: none; }
             .about, .section { padding: 3rem 1.5rem; }
+            .section-header { flex-direction: column; gap: 0.3rem; }
         }
     </style>
 </head>
@@ -255,14 +373,34 @@
     
     <!-- Hero -->
     <section class="hero">
-        <h1>Jiang</h1>
-        <p>摄影 / 设计 / 创意</p>
+        <div class="hero-bg">
+            <img src="images/0068Xrkogy1hkz31l8tmhj30u00ro7ki.jpg" alt="">
+        </div>
+        
+        <div class="diagonal-line left"></div>
+        <div class="diagonal-line right"></div>
+        
+        <div class="hero-content">
+            <div class="name-wrapper">
+                <h1>Jiang</h1>
+            </div>
+            <div class="hero-subtitle">
+                <span>摄影</span>
+                <span>设计</span>
+                <span>创意</span>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <span>SCROLL</span>
+            <div class="line"></div>
+        </div>
     </section>
     
     <!-- Portrait -->
     <section class="section" id="portrait">
         <div class="section-header">
-            <h2>01 — Portrait</h2>
+            <h2>01 / Portrait</h2>
             <p>人像摄影</p>
         </div>
         <div class="photo-grid">
@@ -285,7 +423,7 @@
     <!-- Landscape -->
     <section class="section" id="landscape">
         <div class="section-header">
-            <h2>02 — Landscape</h2>
+            <h2>02 / Landscape</h2>
             <p>风景摄影</p>
         </div>
         <div class="photo-grid">
@@ -308,7 +446,7 @@
     <!-- Street -->
     <section class="section" id="street">
         <div class="section-header">
-            <h2>03 — Street</h2>
+            <h2>03 / Street</h2>
             <p>街拍纪实</p>
         </div>
         <div class="photo-grid">
@@ -331,7 +469,7 @@
     <!-- B&W -->
     <section class="section" id="bw">
         <div class="section-header">
-            <h2>04 — B&W</h2>
+            <h2>04 / B&W</h2>
             <p>黑白影像</p>
         </div>
         <div class="photo-grid">
@@ -416,6 +554,10 @@
                 const target = document.querySelector(link.getAttribute('href'));
                 if (target) target.scrollIntoView({ behavior: 'smooth' });
             });
+        });
+        
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
         });
     </script>
 </body>
