@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jiang | 摄影作品</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #000; color: #fff; overflow-x: hidden; }
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .hero h1 { font-size: 5rem; font-weight: 200; letter-spacing: 0.5em; text-transform: uppercase; margin-bottom: 1rem; opacity: 0; animation: fadeIn 1.5s ease forwards; }
+        .hero p { font-size: 0.9rem; font-weight: 300; letter-spacing: 0.3em; color: rgba(255,255,255,0.6); opacity: 0; animation: fadeIn 1.5s ease 0.5s forwards; }
+        .scroll-hint { position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); font-size: 0.65rem; letter-spacing: 0.3em; color: rgba(255,255,255,0.4); animation: bounce 2s infinite; }
+        .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; padding: 3px; }
+        .gallery-item { position: relative; overflow: hidden; cursor: pointer; aspect-ratio: 1; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.97); z-index: 1000; justify-content: center; align-items: center; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .lightbox-close { position: absolute; top: 2rem; right: 3rem; font-size: 3rem; color: #fff; cursor: pointer; opacity: 0.5; transition: opacity 0.3s; }
+        .lightbox-close:hover { opacity: 1; }
+        .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); font-size: 4rem; color: #fff; cursor: pointer; opacity: 0.4; transition: opacity 0.3s; padding: 2rem; }
+        .lightbox-nav:hover { opacity: 1; }
+        .lightbox-prev { left: 1rem; }
+        .lightbox-next { right: 1rem; }
+        .about { padding: 10rem 2rem; text-align: center; background: #000; }
+        .about h2 { font-size: 0.7rem; font-weight: 400; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 4rem; }
+        .about p { font-size: 2rem; font-weight: 200; line-height: 2.5; color: rgba(255,255,255,0.9); }
+        footer { padding: 5rem 2rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
+        footer a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; transition: color 0.3s; }
+        footer a:hover { color: #fff; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(15px); } }
+        @media (max-width: 900px) { .gallery { grid-template-columns: repeat(2, 1fr); } .hero h1 { font-size: 3rem; letter-spacing: 0.3em; } }
+        @media (max-width: 600px) { .gallery { grid-template-columns: 1fr; } .hero h1 { font-size: 2rem; } .about p { font-size: 1.5rem; } }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1>Jiang</h1>
+        <p>摄影 / 设计 / 创意</p>
+        <span class="scroll-hint">SCROLL</span>
+    </section>
+    
+    <section class="gallery" id="gallery">
+        <div class="gallery-item"><img src="images/0068Xrkogy1hkz31l8tmhj30u00ro7ki.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/00d0478620646035845c894b3b801056.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/0157ebb35890d00f1fa275adfac63150.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/02db959234720120ce3e4c5afb46ea3a.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/05136456ae5abe22c1a8d33b85929a71.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/065c1ad69cab7fc48b26836c06e8c2cd.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/07abf169f5bbe9c4b0fd953e1c8381d6.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/0d6a8b6febf1480fbb0cebd23c06130c.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/10325babdabb7a3a9b6d6455e407c7bb.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/13f3005402f4246f5a39064e921717de.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/18346421f2fd2e6f25590776aee659f5.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/1a9ff1e40688e8e1f2c945e42da622f1.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/1e2212968da92035671da3cb64f843a5.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/1f0d29ec5d6294b637f0c5563eab32c0.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/23019ce646ac82b45605704ccf55543f.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/2a1ad794a34986571c022578a5a0f889.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/2bc779a30f67f75431d7388bfb20a95d.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/2d8ffd3984158226d1ef692cb8057198.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/3230ade7714bc3b248b8ca0954610d48.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/32f3ad351c51ce0e40e7c58173975f64.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/337f035e9e7551542bbbb9a6d149f142.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/37afa20d981724bf568b90577ac8169a.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/3ba89543776c7b6f206f977c95d66234.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/3c537bb73d546a3439c96741b15ea126.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/3dcd3b08e26a11551e96978e40276d98.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/41a03ffb234b748e03817323c1befeef.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/420b2ef44381f41c77f52d286f53120b.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/4250e3bf65c18e752f2c9ce5ad8cf512.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/449a4645ea3eab356e1cf73c605bbc6f.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/44a362730dc58a107e74cfad13a7db5c.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/44e1e297a2652272aaefd95e575ae15c.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/45345066c6b3c4cc65efbf1c92cdf933.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/515527217500d24a9909ffdc77b6d26f.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/52a61dee85165fc7b9d17d5e1c87e82c.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/535376c27fc21799f99eca6c8c12af88.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/571e33f48a550e8f41d658d278b5f521.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/5d1219d4f355337413ca0d979e808346.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/621e501ed416a99e0a06d721dc667c85.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/640f7e354189bc25c27eba996dbda7b8.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/6ae18291fc4cfd3e61aa556ab8c1ef05.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/6aecb5ce2b9bcf2dfcb970e96540d3f1.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/6c2dcd99ec06f2618ec2e4b981c187b8.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/6d3bd6434b5d21497bd4b2ec3215addb.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/769ec8ec9160f0f87cdac99f405540e9.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/777ce93147f2c4874e907103ba9abe2f.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/7b873c19619e286837c9d267da3aa15b.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/7de7d69d7a719df4a69af529343bdb02.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/8992ffa126f27c56c4341d61e6806170.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/929090693cec2395e31fd7ea9f6132d2.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/942159581d9e941b29d0d5fce96e4f89.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/96b6a3d47d39c29ee97d00642affc348.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/9b92d43d84f8f95006c334befa29efaf.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/Ai摄影｜Midjourney酒类高级场景套图分享_5_Actionx × Arrive_vs_来自小红书网页版.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/DSCF0100.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/DSCF0218.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/DSCF0223.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/DSCF4469.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/DSCF4704.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/DSCF4720.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/a2a5b27b23b66bb43b36bdffe85cf80c.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/a3a2c7fb819a65edeb794963125155af.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/a9d757d22416b7db20e28236127d79f4.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/aa86181b60f3ff46fb38c7dad63d5320.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/ad5fb9034dd2b0bc9fc262f10ee31119.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/b22dbe4d452f7a5399f9825e01522f42.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/b299fe2ad1ed770e143651bbae7f667e.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/b33d4a89145aae4f03d73b94af430770.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/b3b5db928b63e9137f3f857cbb04f4e1.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/b42980e31e06a24dfaf263b36654ae20.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/b4fa56dc02a9e4959b159acc5bc98f28.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/b604f20f496a6db34fd6bd39cb839b10.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/b62ec5b401bbc985ab329577710e7bf5.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/b8cf14565c09e98c854eca2b07cda8de.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/b90a4ec9e70b31c6b17d9afea1c8057b.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/bcffbcf12c7263677e3fca0b4ad9fe36.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/bf1fa0539665d520d403dc26df7e8a75.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/bf324b9d40aace29d377b1fb54845b06.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/c06c646c5c78313ae1d290bd4c91196a.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/c0fbbb64bd52c4ebe5425fb990d9354d.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/c1fe7d6ffb96b38e05ddb4cbfed77d99.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/c2afea9e682cdcb99dbd6cca1a0d0d85.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/c5df1c14c394bcf2a05b34cd5164bf12.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/c8e6ed792292e4ffa64b2ee86eee39ef.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/c957afd3b5f7d95d193f1915906779d4.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/cb786e67d876e185a56bff6989a58ab7.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/cc73c8f79af68354621c8292f6ca9b42.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/d532262715c08b81c74d579c292262e5.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/d7978ae99cf534a40622094dfc72b2e1.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/d7ecefa38715109f350f1d0660e1a3f9.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/dec0de7a2dff641d2fdfe1ccaa3aa84d.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/diy-photography-19.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/e18aabecc2ae79b435e4ee131a09f3b6.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/e1fb56f8555e31cadfdbec0b99e4da8a.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/e4508a4a53b3a40481d6706dd120c2d8.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/e948e411f73f7e9249439873eb9b4d06.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/ea19533deca94f1bbbe42fd05525d72f.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/eaeac87e483c9cd4d5b2a58567c158c0.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/ef10ff374832390b82e2c238f849ea5d.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/f8689362dfa05dd48c53182135739394.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/fb7b673d3a5b421c592f1100b199009f.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/fcae5f29b079b0580b575f97ba7b2a1b.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/fd586270928059ba93d5ef6fd14f5411.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/fde54591689dfe87a1fc670aeaa16b5d.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/案例分享 _ 阿尔卑斯山的日与夜 _ 静物摄影_1_闪客营地_来自小红书网页版.jpg" alt=""></div>
+        <div class="gallery-item"><img src="images/窗外繁华，窗内温馨：一杯咖啡的静谧时光_4_护花使者(素材库)_来自小红书网页版.jpg" alt=""></div>
+
+    </section>
+    
+    <section class="about">
+        <h2>关于</h2>
+        <p>用镜头讲述故事<br>捕捉生活中的每一个瞬间<br>简约而不简单</p>
+    </section>
+    
+    <footer>
+        <a href="https://github.com/Oceanti" target="_blank">GitHub</a>
+    </footer>
+    
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">×</span>
+        <span class="lightbox-nav lightbox-prev" onclick="prevImage()">‹</span>
+        <span class="lightbox-nav lightbox-next" onclick="nextImage()">›</span>
+        <img src="" alt="" id="lightbox-img">
+    </div>
+    
+    <script>
+        let currentIndex = 0;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const images = document.querySelectorAll('.gallery-item img');
+        
+        images.forEach((img, index) => {
+            img.closest('.gallery-item').onclick = () => openLightbox(index);
+        });
+        
+        function openLightbox(index) {
+            currentIndex = index;
+            lightboxImg.src = images[currentIndex].src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function showImage(index) {
+            currentIndex = (index + images.length) % images.length;
+            lightboxImg.src = images[currentIndex].src;
+        }
+        
+        function prevImage() { showImage(currentIndex - 1); }
+        function nextImage() { showImage(currentIndex + 1); }
+        
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+        });
+        
+        lightbox.onclick = (e) => { if (e.target === lightbox) closeLightbox(); };
+    </script>
+</body>
+</html>
